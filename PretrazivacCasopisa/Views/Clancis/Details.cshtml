@@ -1,0 +1,50 @@
+﻿@model PretrazivacCasopisa.Models.Clanci
+
+@{
+    ViewBag.Title = "Detalji";
+}
+
+<h2>Detalji</h2>
+
+<div>
+    <h4>Članci</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Autor.ImeIPrezime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autor.ImeIPrezime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Casopis2.Naziv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Casopis2.Naziv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Naslov)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naslov)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.broj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.broj)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Uredi", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Natrag na popis", "Index")
+</p>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<PretrazivacCasopisa.Models.Clanci>
+
+@{
+    ViewBag.Title = "Popis članaka";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Kreiraj novi zapis", "Create")
+</p>
+    @using (Html.BeginForm("Index", "Clancis", FormMethod.Get))
+    {
+    <p>
+        Pretraži po pojmu: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Pretraži" />
+    </p>
+    }
+    
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Ime i prezime autora", "Index", new { sortOrder=ViewBag.simeiprezime, currentFilter=ViewBag.CurrentFilter})
+            </th>
+            <th>
+                @Html.ActionLink("Naziv časopisa", "Index", new { sortOrder=ViewBag.snaziv, currentFilter=ViewBag.CurrentFilter})
+            </th>
+            <th>
+                @Html.ActionLink("Naslov članka", "Index", new { sortOrder=ViewBag.snaslov, currentFilter=ViewBag.CurrentFilter})
+            </th>
+            <th>
+                @Html.ActionLink("Broj časopisa", "Index", new { sortOrder=ViewBag.sbroj, currentFilter=ViewBag.CurrentFilter})
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autor.ImeIPrezime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Casopis2.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naslov)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.broj)
+                </td>
+                <td>
+                    @Html.ActionLink("Uredi", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalji", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Obriši", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>

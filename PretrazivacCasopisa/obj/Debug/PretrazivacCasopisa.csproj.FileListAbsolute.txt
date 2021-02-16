@@ -113,3 +113,7 @@ C:\Users\snjez\source\repos\PretrazivacCasopisa\PretrazivacCasopisa\obj\Debug\Pr
 C:\Users\snjez\source\repos\PretrazivacCasopisa\PretrazivacCasopisa\obj\Debug\PretrazivacCasopisa.Migrations.Casopis2.resources
 C:\Users\snjez\source\repos\PretrazivacCasopisa\PretrazivacCasopisa\obj\Debug\PretrazivacCasopisa.Migrations.Clanci.resources
 C:\Users\snjez\source\repos\PretrazivacCasopisa\PretrazivacCasopisa\obj\Debug\PretrazivacCasopisa.Migrations.Clanci2.resources
+C:\Users\snjez\source\repos\PretrazivacCasopisa\PretrazivacCasopisa\bin\PagedList.dll
+C:\Users\snjez\source\repos\PretrazivacCasopisa\PretrazivacCasopisa\bin\PagedList.Mvc.dll
+C:\Users\snjez\source\repos\PretrazivacCasopisa\PretrazivacCasopisa\bin\PagedList.xml
+C:\Users\snjez\source\repos\PretrazivacCasopisa\PretrazivacCasopisa\bin\PagedList.Mvc.xml

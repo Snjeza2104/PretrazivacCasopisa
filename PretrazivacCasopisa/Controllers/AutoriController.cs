@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PretrazivacCasopisa.Models;
+using PagedList;
 
 namespace PretrazivacCasopisa.Controllers
 {
@@ -15,10 +16,22 @@ namespace PretrazivacCasopisa.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Autori
-        public ActionResult Index( string sortOrder)
+        public ActionResult Index( string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Ime_desc" : "";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var autori = from s in db.Autoris
                          select s;
             switch (sortOrder)
@@ -31,7 +44,10 @@ namespace PretrazivacCasopisa.Controllers
                     break;
 
             }
-            return View(autori.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(autori.ToPagedList(pageNumber, pageSize));
+           // return View(autori.ToList());
         }
 
         // GET: Autori/Details/5

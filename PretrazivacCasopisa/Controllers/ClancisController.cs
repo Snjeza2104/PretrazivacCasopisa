@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using PretrazivacCasopisa.Models;
+using PagedList;
+using PagedList.Mvc;
 
 namespace PretrazivacCasopisa.Controllers
 {
@@ -15,7 +17,7 @@ namespace PretrazivacCasopisa.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Clancis
-        public ActionResult Index(string sortOrder, string currentFilter, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             var clancis = db.Clancis.Include(c => c.Autor).Include(c => c.Casopis2);
             ViewBag.CurrentSort = sortOrder;
@@ -24,7 +26,9 @@ namespace PretrazivacCasopisa.Controllers
             ViewBag.sbroj = sortOrder == "sbroj_asc" ? "sbroj_desc" : "sbroj_asc";
             ViewBag.simeiprezime = sortOrder == "simeiprezime_asc" ? "simeiprezime_desc" : "simeiprezime_asc";
 
-            if (searchString != null) { }
+            if (searchString != null) { 
+                page = 1; 
+            }
             else
             {
                 searchString = currentFilter;
@@ -64,10 +68,15 @@ namespace PretrazivacCasopisa.Controllers
                     clanci = clanci.OrderBy(s => s.Autor.ImeIPrezime);
                     break;
                 default:
+                    clanci = clanci.OrderBy(s => s.broj);
                     break;
             }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(clanci.ToPagedList(pageNumber, pageSize));
+            //return View(clanci.ToList());
 
-            return View(clanci.ToList());
+            
         }
 
         // GET: Clancis/Details/5
